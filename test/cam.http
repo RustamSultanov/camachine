@@ -1,0 +1,19 @@
+### Simple command
+POST http://localhost:8080/api/cam
+Content-Type: application/json
+
+{
+  "optimisation":0,
+  "commands":"push quote(0) swap quote(3) cons add"
+}
+
+### Complex command
+POST http://localhost:8080/api/cam
+Content-Type: application/json
+
+{
+  "optimisation":0,
+  "commands":"push push recur(push push cdr swap quote(0) cons equal branch(quote(1))(push cdr swap push car cdr swap push cdr swap quote(1) cons minus cons app cons mult)) cons cur(push push cdr swap quote(0) cons equal branch(quote(1))(push cdr swap push car cdr swap push cdr swap quote(1) cons minus cons app cons mult)) cons push cdr swap quote(3) cons app"
+}
+
+###

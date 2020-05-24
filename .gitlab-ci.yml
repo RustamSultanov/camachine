@@ -1,0 +1,36 @@
+image: hseeberger/scala-sbt:8u222_1.3.3_2.12.10
+
+stages:
+  - test
+  - deploy
+
+before_script:
+  - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+  - apt-get install -y nodejs
+  - curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+  - apt-get update
+  - apt-get -y install yarn
+
+scalafmt_check_all:
+  stage: test
+  allow_failure: true
+  script:
+    - sbt -mem 2048 scalafmtCheckAll
+
+test:
+  stage: test
+  script:
+    - export SBT_OPTS="-Xss8m"
+    - sbt -mem 2048 test
+
+deploy_prod:
+  stage: deploy
+  environment:
+    name: prod
+    url: https://cammachine-api.herokuapp.com
+  only:
+    - master
+  script:
+    - export SBT_OPTS="-Xss8m"
+    - sbt -mem 2048 stage deployHeroku

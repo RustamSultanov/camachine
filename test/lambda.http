@@ -1,0 +1,18 @@
+### Lambda abstraction
+POST http://localhost:8080/api/lambda
+Content-Type: application/json
+
+{
+  "code": "\\x.(xx)a"
+}
+
+### Lambda application
+POST http://localhost:8080/api/lambda
+Content-Type: application/json
+
+{
+  "code": "(s a)"
+}
+
+
+###

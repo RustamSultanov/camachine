@@ -1,0 +1,108 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "CAM API",
+    "description" : "Categorial Abstract Machine REST API Docs",
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8080"
+  } ],
+  "paths" : {
+    "/api/cam" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body"
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\r\n  \"optimisation\":0,\r\n  \"commands\":\"push push recur(push push cdr swap quote(0) cons equal branch(quote(1))(push cdr swap push car cdr swap push cdr swap quote(1) cons minus cons app cons mult)) cons cur(push push cdr swap quote(0) cons equal branch(quote(1))(push cdr swap push car cdr swap push cdr swap quote(1) cons minus cons app cons mult)) cons push cdr swap quote(3) cons app\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector"
+          }
+        },
+        "servers" : [ {
+          "url" : "http://localhost:8080"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "http://localhost:8080"
+      } ]
+    },
+    "/api/lambda" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body_1"
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\r\n  \"code\": \"\\\\x.(xx)a\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/body_1"
+                },
+                "examples" : {
+                  "0" : {
+                    "value" : "{\"code\":\"CombApp(CombCur(CombApp(Dpair(Fst,Snd),Dpair(Fst,Snd))),Dpair(Fst,Snd))\"}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://localhost:8080"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "http://localhost:8080"
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "body" : {
+        "type" : "object",
+        "properties" : {
+          "optimisation" : {
+            "type" : "integer"
+          },
+          "commands" : {
+            "type" : "string"
+          }
+        }
+      },
+      "body_1" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}
