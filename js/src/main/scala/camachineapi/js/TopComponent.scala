@@ -1,13 +1,14 @@
 package camachineapi.js
 
-import camachineapi.js.components.LambdaComponent
+import camachineapi.js.components.{CamComponent, LambdaComponent}
 import camachineapi.js.http.Client
 import outwatch.dom.BasicVNode
 import cats.effect.{ContextShift, IO}
 import outwatch.dom.dsl._
 
 final case class TopComponent(
-  labmdaComponent: LambdaComponent,
+  camComponent: CamComponent,
+  lambdaComponent: LambdaComponent,
 ) {
 
   def node: BasicVNode =
@@ -24,7 +25,11 @@ final case class TopComponent(
       ),
       div(
         cls := "container",
-        labmdaComponent.node,
+        camComponent.node,
+      ),
+      div(
+        cls := "container",
+        lambdaComponent.node,
       ),
       footer(
         div(
@@ -47,7 +52,8 @@ object TopComponent {
     contextShift: ContextShift[IO],
   ): IO[TopComponent] =
     for {
+      camComponent    <- CamComponent.init(client)
       lambdaComponent <- LambdaComponent.init(client)
-    } yield TopComponent(lambdaComponent)
+    } yield TopComponent(camComponent, lambdaComponent)
 
 }

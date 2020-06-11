@@ -29,6 +29,7 @@ class LambdaComponent(
       textAreaLambda,
       "lambdaTextArea",
       "Лямбда код",
+      "Введите последовательность лямбда-термов",
       isRequired = true,
     ),
     buttonSubmitGroupRow(
@@ -41,7 +42,7 @@ class LambdaComponent(
     h3("Терм ККЛ полученый из лямбда-термов"),
     table(
       tr(
-        tr(
+        td(
           styleAttr := "bgcolor=#b9e4c9",
           VDomModifier(resultLambda.map(_.code)),
         ),

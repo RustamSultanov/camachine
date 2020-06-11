@@ -52,7 +52,7 @@ object Forms {
     )
 
   def radioGroupRow(
-    sink: Observer[Option[String]],
+    sink: Observer[String],
     idValue: String,
     labelValue: String,
     initial: Option[String] = None,
@@ -69,10 +69,9 @@ object Forms {
         cls := "col-sm-10",
         input(
           `type` := "radio",
-          step := "1",
           cls := "form-control",
           id := idValue,
-          onInput.value.map(_.some) --> sink,
+          onInput.value --> sink,
           required := isRequired,
         ),
       ),
@@ -82,6 +81,7 @@ object Forms {
     sink: Observer[String],
     idValue: String,
     labelValue: String,
+    placeholderValue: String,
     initial: Option[String] = None,
     isRequired: Boolean = false,
   ): BasicVNode =
@@ -96,6 +96,9 @@ object Forms {
         cls := "col-sm-10",
         textArea(
           cls := "form-control",
+          attr("data-rows") := "10",
+          attr("data-cols") := "140",
+          placeholder := placeholderValue,
           id := idValue,
           onInput.value --> sink,
           initial,
